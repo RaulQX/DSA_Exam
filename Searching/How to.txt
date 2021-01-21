@@ -1,0 +1,96 @@
+Searching can be done by:
+
+Linear
+Flag
+Binary
+Interpolation
+
+Linear:
+
+v[n];
+while (i<N && v[i]!=x) {
+	i++;
+	if (i==n)
+		return true;
+}
+return true;
+
+o(3n)
+--------------------------
+
+v[n+1]
+v[n] = x;
+while (v[i]!=x) {
+	i++;
+	if (i==n)
+		return false;
+}
+return true;
+
+o(n) (3 times faster)
+
+-------------------------
+
+char *interpolation (type *v, long key, long left, long right)
+{
+	long m;
+	right = FILESIZE-1;
+
+	if (key < v[left].key)
+		return "Number too small";
+	if (key > v[right].key)
+		return "Number too big";
+
+	do
+	{
+		m = left + ( (key - v[left].key) * (right - left) ) / (v[right].key - v[left].key);
+
+		if (key > v[m].key)
+			left = m + 1;
+		else
+			right = m - 1;
+
+	}while ( (left <= right ) && (v[m].key != key) && (v[right].key != v[left].key) && (key >= v[left].key) && (key <= v[right].key) );
+
+	if (v[m].key == key)
+		return v[m].job;
+	else
+		return "Not found";
+}
+
+Interpolation is an improvement of bsearch.
+Interpolation is good when it's sorted and the numbers follow a function-like pattern
+
+lg(lg(n)+1)
+
+10^9 => less than 5 comparisons
+------------------------------
+
+Binary search
+
+Must be sorted
+
+int binarySearch(int arr[], int l, int r, int x) 
+{ 
+    while (l <= r) { 
+        int m = l + (r - l) / 2; 
+  
+        // Check if x is present at mid 
+        if (arr[m] == x) 
+            return m; 
+  
+        // If x greater, ignore left half 
+        if (arr[m] < x) 
+            l = m + 1; 
+  
+        // If x is smaller, ignore right half 
+        else
+            r = m - 1; 
+    } 
+  
+    // if we reach here, then element was 
+    // not present 
+    return -1; 
+} 
+  
+log2(n)

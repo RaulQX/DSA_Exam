@@ -56,9 +56,9 @@ void SelectSort(int arr[], int n)
         // Find the minimum element in unsorted array  
         min_idx = i;  
         for (j = i+1; j < n; j++)  
-        if (arr[j] < arr[min_idx])  
-            min_idx = j;  
-  		printArr(arr,n);	
+        	if (arr[j] < arr[min_idx])  
+            	min_idx = j;  
+  		//printArr(arr,n);	
         // Swap the found minimum element with the first element  
         swap(&arr[min_idx], &arr[i]);  
         printArr(arr,n);	
@@ -70,14 +70,21 @@ void BubbleSort(int arr[], int n)
     int i, j;  
     for (i = 0; i < n-1; i++)      
 	    // Last i elements are already in place  
-	    for (j = 0; j < n-i-1; j++)  
-	        if (arr[j] > arr[j+1]) {
-	        	printArr(arr,n);
+	    for (j = 0; j < n-i-1; j++)  {
+	
+	    	if (arr[j] > arr[j+1]) {
+	    		printf("Interchange:\n");
+	        	//printArr(arr,n);
 	        	swap(&arr[j], &arr[j+1]);  
 	        	printArr(arr,n);
 	        	printf("\n");
 	        }
-	            
+	        else {
+	        	printf("Comparison:\n");
+	        	printArr(arr, n);
+	        	printf("\n");
+	        }
+	    }    
 }  
 
 void ShakerSort(int a[], int n)
@@ -137,7 +144,7 @@ void ShakerSort(int a[], int n)
 }
 int main ()
 {
-	int sortingArray[] = {9, 5, 12, 2, 1, 0, 1};
+	int sortingArray[] = {2,7,1,3,5};
 	int arraySize = sizeof(sortingArray)/sizeof(sortingArray[1]);
 
 	switch(choose()) {
